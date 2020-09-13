@@ -1,0 +1,25 @@
+<template>
+    <div class="slds-box" style="min-height:250px;">
+                <template if:true={displayPhoto}>
+                     <!-- display phot oif seelcted While adding the component -->
+                    <img src={user.MediumPhotoUrl} class="user slds-align_absolute-center" alt="user Picture">
+                </template>
+                <template if:false={displayPhoto}>
+                    <!-- empty tag if photo is not shown-->
+                    <div class="slds-align_absolute-center"></div>
+                </template>
+                <div>
+                    <p class="slds-align_absolute-center">
+                        <a class="slds-m-top_medium">
+                            <lightning:formattedUrl onclick={openUserRecord}> {user.Name} </lightning:formattedUrl>
+                        </a>
+                    </p>
+                    <p class="slds-align_absolute-center">
+                        <lightning:formattedText> {user.Title} </lightning:formattedText>
+                    </p>
+                    <p class="slds-align_absolute-center boldtext" style="font-weight: bold;">
+                        <lightning:formattedText> {user.CompanyName} </lightning:formattedText>
+                    </p>
+                </div>    
+    </div>
+</template>

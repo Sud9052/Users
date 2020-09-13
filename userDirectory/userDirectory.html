@@ -1,0 +1,74 @@
+<template>
+    <lightning-card>
+        <div class="slds-p-around_medium">
+            <lightning-layout horizontal-align="center">
+                <!-- search by Option in picklist -->
+                <lightning-layout-item padding="horizontal-small">
+                    <lightning-combobox name="searchBy" label="Serach By" placeholder="Name" value={selectedValue}
+                        onchange={handleSearchByChange} variant='label-hidden' options={searchOptions}>
+                    </lightning-combobox>
+                </lightning-layout-item>
+
+                  <!-- search text box -->
+                <lightning-layout-item padding="horizontal-small">
+                    <lightning-input type="search" label="Enter search text" placeholder="type here..."
+                        onchange={handleTextChange} variant="label-hidden"></lightning-input>
+                </lightning-layout-item>
+
+            </lightning-layout>
+            <hr>
+        </div>
+        
+        <!-- User list and the Next, Previous buttons-->
+        <lightning-layout multiple-rows horizontal-align="center">
+            <template if:true={usersFound}>
+                <!-- Display users(12 in each page) by calling child userTile Component-->
+                <template for:each={currentPageData} for:item="user">
+                    <lightning-layout-item key={user.Id} padding="around-small" size="12" small-device-size="6"
+                        large-device-size="3" medium-device-size="4">
+                        <c-user-tile user={user} display-photo={displayPhoto}>
+                        </c-user-tile>
+                    </lightning-layout-item>
+                </template>
+                <lightning-layout-item size="12">
+                    <div class="slds-align_absolute-center">
+                        <div class="slds-grid slds-gutters slds-grid_vertical-align-center slds-grid_align-center">
+                            <div class="slds-col">
+                                 <!-- Display "Previous" button if any previous records exist-->
+                                <span>
+                                    <template if:true={hasPrev}>
+                                        <lightning-button variant="brand" label="Previous" onclick={onPrev}
+                                            class="slds-m-left_x-small"></lightning-button>
+                                    </template>
+                                </span>
+                            </div>
+                            <div class="slds-col">
+                                 <!-- Display "Next" button if any Further records exist-->
+                                <span>
+                                    <template if:true={hasNext}>
+                                        <lightning-button variant="brand" label="next" onclick={onNext}
+                                            class="slds-m-left_x-small"></lightning-button>
+                                    </template>
+                                </span>
+                            </div>
+                            <div class="slds-col">
+                                 <!-- Text box to navigate to a page -->
+                                <div class="slds-grid">
+                                    <span class="slds-p-around_x-small"> Page </span>
+                                    <lightning-input type="number" label="Page Number" name="input1" value={page}
+                                        variant="label-hidden" onchange={handlePageNoChange}
+                                        class="slds-size--2-of-12 slds-text-align_right"></lightning-input><span
+                                        class="slds-p-around_x-small"> of {numberOfPages}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </lightning-layout-item>
+            </template>
+            <template if:false={usersFound}>
+                <div class="slds-align_absolute-center">No users found with search criteria.</div>
+            </template>
+        </lightning-layout>
+    </lightning-card>
+</template>

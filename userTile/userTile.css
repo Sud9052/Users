@@ -1,0 +1,37 @@
+.tile {
+    padding: 8px;
+    background-color: #FFFFFF;
+    border-radius: 0.25rem;
+    min-height: max-content;
+  }
+  
+  a {
+  color: inherit;
+  }
+  
+  img.user {
+    height: 120px;
+    max-width: initial;
+    pointer-events: none;
+    border-radius: 100%;
+  }
+  
+  .title {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .selected{
+    border-width: medium;
+    border-radius: 4px;
+    border-color: royalblue;
+    border-style: solid;
+  }
+
+  .boldtext {
+    font-weight: bold;
+  }
+
+  .slds-box:hover {
+    box-shadow: 0 0 21px rgba(27, 27, 27, 0.2); 
+  }
